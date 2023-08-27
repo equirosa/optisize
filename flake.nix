@@ -19,6 +19,7 @@
       {
         devShells.default = mkShell {
           buildInputs = [
+            cargo-msrv
             openssl
             pkg-config
             rust-bin.beta.latest.default
