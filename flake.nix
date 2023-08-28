@@ -19,6 +19,7 @@
       {
         devShells.default = mkShell {
           buildInputs = [
+            bacon
             cargo-msrv
             openssl
             pkg-config
