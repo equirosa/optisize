@@ -1,6 +1,6 @@
 use clap::Parser;
 use mime::Mime;
-use std::{fs::File, path::Path, process};
+use std::{path::Path, process};
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
