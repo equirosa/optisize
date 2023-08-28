@@ -27,7 +27,13 @@ fn get_mimetype(path: &Path) -> Mime {
         let path_string: String = path_str.to_string();
         let parts: Vec<&str> = path_string.split('.').collect();
         return match parts.last() {
-            None => mime::TEXT_PLAIN,
+            None => {
+                eprintln!(
+                    "No file extension detected. Type might be {}.",
+                    mime::TEXT_PLAIN
+                );
+                process::exit(1);
+            }
             Some(v) => match *v {
                 "png" => mime::IMAGE_PNG,
                 "jpg" | "jpeg" => mime::IMAGE_JPEG,
