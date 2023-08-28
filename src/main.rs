@@ -6,10 +6,10 @@ use clap::Parser;
 struct Args {
     /// Name of the person to greet
     #[arg(short, long)]
-    name: String,
+    input: String,
 }
 
 fn main() {
     let args = Args::parse();
-    println!("Hello {}!", args.name)
+    println!("Hello {}!", args.input)
 }
