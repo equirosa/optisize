@@ -1,6 +1,10 @@
+mod handle_mime;
+
 use clap::Parser;
 use mime::Mime;
 use std::{path::Path, process};
+
+use crate::handle_mime::get_mimetype;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -20,28 +24,4 @@ fn main() {
     }
     let mimetype: Mime = get_mimetype(path);
     println!("Hello {}!", mimetype)
-}
-
-fn get_mimetype(path: &Path) -> Mime {
-    if let Some(path_str) = path.to_str() {
-        let path_string: String = path_str.to_string();
-        let parts: Vec<&str> = path_string.split('.').collect();
-        return match parts.last() {
-            None => {
-                eprintln!(
-                    "No file extension detected. Type might be {}.",
-                    mime::TEXT_PLAIN
-                );
-                process::exit(1);
-            }
-            Some(v) => match *v {
-                "png" => mime::IMAGE_PNG,
-                "jpg" | "jpeg" => mime::IMAGE_JPEG,
-                &_ => mime::TEXT_PLAIN,
-            },
-        };
-    } else {
-        eprintln!("Couldn't parse string");
-        process::exit(1);
-    }
 }
