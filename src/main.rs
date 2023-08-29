@@ -22,6 +22,12 @@ fn main() {
         eprintln!("Input must be a valid path and a file");
         process::exit(1);
     }
-    let mimetype: Mime = get_mimetype(path);
-    println!("Hello {}!", mimetype)
+    let mimetype: Result<Mime, &str> = get_mimetype(path);
+    match mimetype {
+        Ok(mtype) => println!("Hello {}!", mtype),
+        Err(message) => {
+            eprintln!("{}", message);
+            process::exit(1)
+        }
+    }
 }
