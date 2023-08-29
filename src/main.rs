@@ -6,11 +6,9 @@ use std::{path::Path, process};
 
 use crate::handle_mime::get_mimetype;
 
-/// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    /// Name of the person to greet
     #[arg(short, long)]
     input: String,
 }
