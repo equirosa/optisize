@@ -20,7 +20,7 @@ fn main() {
         eprintln!("Input must be a valid path and a file");
         process::exit(1);
     }
-    let mimetype: Result<Mime, &str> = get_mimetype(path);
+    let mimetype: Result<Mime, &str> = get_mimetype(&args.input);
     match mimetype {
         Ok(mtype) => println!("Hello {}!", mtype),
         Err(message) => {
