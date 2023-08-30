@@ -24,5 +24,17 @@ fn main() {
 }
 
 fn handle_extension(extension: &std::ffi::OsStr) {
-    println!("Extension is {:?}", extension);
+    if let Some(valid_ext) = extension.to_str() {
+        match valid_ext {
+            "jpeg" | "jpg" => todo!(),
+            "png" => todo!(),
+            _ => {
+                eprintln!("I don't know how to handle the {} extension", valid_ext);
+                process::exit(1);
+            }
+        }
+    } else {
+        eprintln!("Extension {:?} couldn't be parsed", extension);
+        process::exit(1);
+    }
 }
