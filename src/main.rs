@@ -1,10 +1,5 @@
-mod handle_mime;
-
 use clap::Parser;
-use mime::Mime;
 use std::{path::Path, process};
-
-use crate::handle_mime::get_mimetype;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -20,12 +15,14 @@ fn main() {
         eprintln!("Input must be a valid path and a file");
         process::exit(1);
     }
-    let mimetype: Result<Mime, &str> = get_mimetype(&args.input);
-    match mimetype {
-        Ok(mtype) => println!("Hello {}!", mtype),
-        Err(message) => {
-            eprintln!("{}", message);
-            process::exit(1)
-        }
+    if let Some(extension) = path.extension() {
+        handle_extension(extension)
+    } else {
+        eprintln!("File has no extension, and I can't decide what to do with it.");
+        process::exit(1);
     }
+}
+
+fn handle_extension(extension: &std::ffi::OsStr) {
+    println!("Extension is {:?}", extension);
 }
