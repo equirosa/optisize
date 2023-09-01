@@ -16,18 +16,18 @@ fn main() {
         process::exit(1);
     }
     if let Some(extension) = path.extension() {
-        handle_extension(extension)
+        handle_extension(extension, path)
     } else {
         eprintln!("File has no extension, and I can't decide what to do with it.");
         process::exit(1);
     }
 }
 
-fn handle_extension(extension: &std::ffi::OsStr) {
+fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
     if let Some(valid_ext) = extension.to_str() {
         match valid_ext {
-            "jpeg" | "jpg" => todo!(),
-            "png" => todo!(),
+            "jpeg" | "jpg" => optimize_jpeg(path),
+            "png" => optimize_png(path),
             _ => {
                 eprintln!("I don't know how to handle the {} extension", valid_ext);
                 process::exit(1);
@@ -37,4 +37,12 @@ fn handle_extension(extension: &std::ffi::OsStr) {
         eprintln!("Extension {:?} couldn't be parsed", extension);
         process::exit(1);
     }
+}
+
+fn optimize_png(path: &Path) {
+    println!("{:?}", path)
+}
+
+fn optimize_jpeg(path: &Path) {
+    println!("{:?}", path)
 }
