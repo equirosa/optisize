@@ -24,12 +24,12 @@ fn main() {
 }
 
 fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
-    if let Some(valid_ext) = extension.to_str() {
-        match valid_ext {
+    if let Some(extension_str) = extension.to_str() {
+        match extension_str.to_lowercase().as_str() {
             "jpeg" | "jpg" => optimize_jpeg(path),
             "png" => optimize_png(path),
             _ => {
-                eprintln!("I don't know how to handle the {} extension", valid_ext);
+                eprintln!("I don't know how to handle the {} extension", extension_str);
                 process::exit(1);
             }
         }
