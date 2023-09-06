@@ -40,6 +40,10 @@ fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
     }
 }
 
+fn optimize_video(path: &Path) {
+    println!("{:?}", path)
+}
+
 fn optimize_png(path: &Path) {
     println!("{:?}", path)
 }
