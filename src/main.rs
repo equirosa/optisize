@@ -28,6 +28,7 @@ fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
         match extension_str.to_lowercase().as_str() {
             "jpeg" | "jpg" => optimize_jpeg(path),
             "png" => optimize_png(path),
+            "mp4" => optimize_video(path),
             _ => {
                 eprintln!("I don't know how to handle the {} extension", extension_str);
                 process::exit(1);
