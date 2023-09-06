@@ -1,5 +1,5 @@
 use clap::Parser;
-use std::{path::Path, process};
+use std::{path::Path, process::exit};
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -19,13 +19,13 @@ fn main() {
     let path = Path::new(&args.input);
     if !path.exists() || !path.is_file() {
         eprintln!("Input must be a valid path and a file");
-        process::exit(1);
+        exit(1);
     }
     if let Some(extension) = path.extension() {
         handle_extension(extension, path)
     } else {
         eprintln!("File has no extension, and I can't decide what to do with it.");
-        process::exit(1);
+        exit(1);
     }
 }
 
@@ -37,12 +37,12 @@ fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
             "mp4" => optimize_video(path),
             _ => {
                 eprintln!("I don't know how to handle the {} extension", extension_str);
-                process::exit(1);
+                exit(1);
             }
         }
     } else {
         eprintln!("Extension {:?} couldn't be parsed", extension);
-        process::exit(1);
+        exit(1);
     }
 }
 
