@@ -4,7 +4,13 @@ use std::{path::Path, process};
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    #[arg(short, long)]
+    #[arg(
+        short,
+        long,
+        help = "Have optisize convert <INPUT> to a new, more space-efficient file format. (NOTE: Usually lossy)"
+    )]
+    convert: bool,
+    #[arg(help = "File to be optimized")]
     input: String,
 }
 
