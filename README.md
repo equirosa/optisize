@@ -4,9 +4,9 @@ This is a CLI tool that takes an input and optimize it through various methods.
 
 ## Supported extensions
 
-- `png`
-- `jpeg`
-- `mp4`
+- [ ] `png`
+- [ ] `jpeg`
+- [ ] `mp4`
 
 ## TODOs
 
