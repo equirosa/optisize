@@ -19,8 +19,8 @@ struct Args {
 }
 
 fn main() {
-    let args = Args::parse();
-    let path = Path::new(&args.input);
+    let args: Args = Args::parse();
+    let path: &Path = Path::new(&args.input);
     if !path.exists() || !path.is_file() {
         eprintln!("Input must be a valid path and a file");
         exit(1);
@@ -76,9 +76,9 @@ fn optimize_jpeg(original_path: &Path) {
 }
 
 fn add_optimized_suffix(original_path: &Path) -> Option<PathBuf> {
-    let file_name = original_path.file_name().and_then(|string| string.to_str());
+    let file_name: Option<&str> = original_path.file_name().and_then(|string| string.to_str());
     if let Some(name) = file_name {
-        let mut new_name = String::from(name);
+        let mut new_name: String = String::from(name);
         if let Some(dot_idx) = new_name.rfind('.') {
             new_name.insert_str(dot_idx, "-optimized");
         } else {
