@@ -14,6 +14,7 @@
         pkgs = import nixpkgs {
           inherit system overlays;
         };
+        optisize = pkgs.callPackage ./nix/optisize.nix { };
       in
       with pkgs;
       {
@@ -28,6 +29,7 @@
 
           shellHook = '' '';
         };
+        packages.default = optisize;
       }
     );
 }
