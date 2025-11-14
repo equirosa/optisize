@@ -37,8 +37,6 @@ fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
     if let Some(extension_str) = extension.to_str() {
         match extension_str.to_lowercase().as_str() {
             "jpeg" | "jpg" => optimize_jpeg(path),
-            "png" => optimize_png(path),
-            "mp4" => optimize_video(path),
             _ => {
                 eprintln!("I don't know how to handle the {} extension", extension_str);
                 exit(1);
@@ -48,14 +46,6 @@ fn handle_extension(extension: &std::ffi::OsStr, path: &Path) {
         eprintln!("Extension {:?} couldn't be parsed", extension);
         exit(1);
     }
-}
-
-fn optimize_video(path: &Path) {
-    println!("{:?}", path)
-}
-
-fn optimize_png(path: &Path) {
-    println!("{:?}", path)
 }
 
 fn optimize_jpeg(original_path: &Path) {
